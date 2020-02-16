@@ -1,0 +1,12 @@
+.DS_Store
+.idea
+*.csproj
+*.csproj.meta
+*.sln
+*.sln.meta
+Library/*
+obj/*
+Logs/*
+Temp/*
+Assets/Plugins/Editor/JetBrains/*
+Assets/Plugins/Editor/JetBrains.meta
