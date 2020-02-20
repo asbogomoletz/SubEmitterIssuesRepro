@@ -7,6 +7,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 	public float MaxRange = 500;
 	public float Speed = 700;
 	public float ShotInterval = 0.5f;
+	public bool BreakOnEmit;
 
 	private ParticleSystem _particleSystem;
 
@@ -83,6 +84,9 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 
 	private void EmitProjectileParticles()
 	{
+		var needToBreak = BreakOnEmit
+		                  && _emitProjectiles.Count != 0;
+		
 		foreach (var projectile in _emitProjectiles)
 		{
 			var emitParams = new ParticleSystem.EmitParams
@@ -99,6 +103,11 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 		}
 
 		_emitProjectiles.Clear();
+
+		if (needToBreak)
+		{
+			Debug.Break();
+		}
 	}
 
 	private void UpdateProjectileParticles()
