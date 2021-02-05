@@ -7,6 +7,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 	public float MaxRange = 500;
 	public float Speed = 700;
 	public float ShotInterval = 0.5f;
+	public bool HackEnabled;
 	public bool BreakOnEmit;
 
 	private ParticleSystem _particleSystem;
@@ -113,6 +114,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 	private void UpdateProjectileParticles()
 	{
 		var particlesCount = _particleSystem.GetParticles(_particles);
+		var velocityMul = HackEnabled ? 0.001f : 1f;
 		
 		for (var i = 0; i < particlesCount; i++)
 		{
@@ -122,7 +124,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 			particle.position = projectile.Position;
 			if (projectile.IsAlive)
 			{
-				particle.velocity = projectile.Velocity;
+				particle.velocity = projectile.Velocity * velocityMul;
 				particle.remainingLifetime = projectile.Lifetime;
 			}
 			else

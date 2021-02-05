@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.4465934, g: 0.49642956, b: 0.5748249, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -284,7 +284,8 @@ MonoBehaviour:
   MaxRange: 500
   Speed: 700
   ShotInterval: 3
-  BreakOnEmit: 1
+  HackEnabled: 0
+  BreakOnEmit: 0
 --- !u!1001 &1682163966
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -292,10 +293,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6030690156145379716, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+    - target: {fileID: 5868378031749568662, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
         type: 3}
-      propertyPath: m_Name
-      value: BulletsEmitter
+      propertyPath: EmissionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869101608363234940, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+        type: 3}
+      propertyPath: EmissionModule.enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869101608363234940, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+        type: 3}
+      propertyPath: looping
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869101608363234940, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+        type: 3}
+      propertyPath: moveWithTransform
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869101608363234940, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.minMaxState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869101608363234940, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+        type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869101608363234940, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+        type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 5869101608363234940, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+        type: 3}
+      propertyPath: ColorModule.enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6026791655314422258, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
         type: 3}
@@ -352,15 +388,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5868378031749568662, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
+    - target: {fileID: 6030690156145379716, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
         type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 5869101608363234940, guid: 6d7db138e52ec44c6bd4865cac95f5f9,
-        type: 3}
-      propertyPath: EmissionModule.enabled
-      value: 0
+      propertyPath: m_Name
+      value: BulletsEmitter
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d7db138e52ec44c6bd4865cac95f5f9, type: 3}
