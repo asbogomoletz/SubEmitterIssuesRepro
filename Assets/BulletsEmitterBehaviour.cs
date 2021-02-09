@@ -7,7 +7,10 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 	public float MaxRange = 500;
 	public float Speed = 700;
 	public float ShotInterval = 0.5f;
+	public int TargetFrameRate = 60;
+	public bool HackEnabled;
 	public bool BreakOnEmit;
+	public bool BreakOnCollision;
 
 	private ParticleSystem _particleSystem;
 
@@ -21,6 +24,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 
 	private void Start()
 	{
+		Application.targetFrameRate = TargetFrameRate;
 		_particleSystem = GetComponent<ParticleSystem>();
 	}
 
@@ -56,6 +60,8 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 
 	private void UpdateProjectilePositions()
 	{
+		var needToBreak = false;
+		
 		for (var i = 0; i < _projectiles.Count; i++)
 		{
 			var projectile = _projectiles[i];
@@ -66,6 +72,11 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 			{
 				projectile.Position = hit.point;
 				projectile.IsAlive = false;
+				
+				if (BreakOnCollision)
+				{
+					needToBreak = true;
+				}
 			}
 			else
 			{
@@ -79,6 +90,11 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 			}
 
 			_projectiles[i] = projectile;
+		}
+
+		if (needToBreak)
+		{
+			Debug.Break();
 		}
 	}
 
@@ -113,6 +129,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 	private void UpdateProjectileParticles()
 	{
 		var particlesCount = _particleSystem.GetParticles(_particles);
+		var velocityMul = HackEnabled ? 0.001f : 1f;
 		
 		for (var i = 0; i < particlesCount; i++)
 		{
@@ -122,7 +139,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 			particle.position = projectile.Position;
 			if (projectile.IsAlive)
 			{
-				particle.velocity = projectile.Velocity;
+				particle.velocity = projectile.Velocity * velocityMul;
 				particle.remainingLifetime = projectile.Lifetime;
 			}
 			else
