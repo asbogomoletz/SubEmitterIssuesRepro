@@ -7,6 +7,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 	public float MaxRange = 500;
 	public float Speed = 700;
 	public float ShotInterval = 0.5f;
+	public int TargetFrameRate = 60;
 	public bool HackEnabled;
 	public bool BreakOnEmit;
 
@@ -22,6 +23,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 
 	private void Start()
 	{
+		Application.targetFrameRate = TargetFrameRate;
 		_particleSystem = GetComponent<ParticleSystem>();
 	}
 
