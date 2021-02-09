@@ -10,6 +10,7 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 	public int TargetFrameRate = 60;
 	public bool HackEnabled;
 	public bool BreakOnEmit;
+	public bool BreakOnCollision;
 
 	private ParticleSystem _particleSystem;
 
@@ -59,6 +60,8 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 
 	private void UpdateProjectilePositions()
 	{
+		var needToBreak = false;
+		
 		for (var i = 0; i < _projectiles.Count; i++)
 		{
 			var projectile = _projectiles[i];
@@ -69,6 +72,11 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 			{
 				projectile.Position = hit.point;
 				projectile.IsAlive = false;
+				
+				if (BreakOnCollision)
+				{
+					needToBreak = true;
+				}
 			}
 			else
 			{
@@ -82,6 +90,11 @@ public class BulletsEmitterBehaviour : MonoBehaviour
 			}
 
 			_projectiles[i] = projectile;
+		}
+
+		if (needToBreak)
+		{
+			Debug.Break();
 		}
 	}
 
